@@ -18,12 +18,9 @@ pipeline:
               spec:
                   cloneCodebase: true
                   infrastructure:
-                      type: KubernetesDirect
+                      type: KubernetesHosted
                       spec:
-                          connectorRef: dbothwellk8s
-                          namespace: default
-                          automountServiceAccountToken: true
-                          nodeSelector: {}
+                          identifier: k8s-hosted-infra
                   execution:
                       steps:
                           - step:
