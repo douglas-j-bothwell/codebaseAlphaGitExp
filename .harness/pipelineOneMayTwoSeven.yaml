@@ -1,0 +1,37 @@
+pipeline:
+    name: pipelineOneMayTwoSeven
+    identifier: pipelineOneMayTwoSeven
+    projectIdentifier: dbothwellSandbox
+    orgIdentifier: default
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: dbothwelllgithubpat
+                repoName: codebaseAlpha
+                build: <+input>
+    stages:
+        - stage:
+              name: Build
+              identifier: Build
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: dbothwellk8s
+                          namespace: default
+                          automountServiceAccountToken: true
+                          nodeSelector: {}
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: echo hello world
+                                identifier: echo_hello_world
+                                spec:
+                                    connectorRef: dbothwelldockerhub
+                                    image: alpine/latest
+                                    shell: Bash
+                                    command: echo "hello world"
