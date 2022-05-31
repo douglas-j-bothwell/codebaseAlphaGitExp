@@ -31,7 +31,7 @@ pipeline:
                                     connectorRef: dbothwelldockerhub
                                     image: alpine/latest
                                     shell: Bash
-                                    command: echo "hello world"
+                                    command: echo "hello world too"
                           - step:
                                 type: BuildAndPushDockerRegistry
                                 name: build-push-to-docker
