@@ -35,3 +35,12 @@ pipeline:
                                     image: alpine/latest
                                     shell: Bash
                                     command: echo "hello world"
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: build-push-to-docker
+                                identifier: buildpushtodocker
+                                spec:
+                                    connectorRef: dbothwelldockerhub
+                                    repo: dbothwell/myalphaservice
+                                    tags:
+                                        - simpgitexp-latest
