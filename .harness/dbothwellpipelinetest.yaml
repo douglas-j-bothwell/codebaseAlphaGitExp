@@ -1,0 +1,37 @@
+pipeline:
+    name: dbothwell-pipeline-test
+    identifier: dbothwellpipelinetest
+    projectIdentifier: RajathaDemo
+    orgIdentifier: default
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: douglasjbothwellgithub
+                repoName: " codebaseAlphaGitExp"
+                build: <+input>
+    stages:
+        - stage:
+              name: myBuildStage
+              identifier: myBuildStage
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: RajathaK8
+                          namespace: default
+                          automountServiceAccountToken: true
+                          nodeSelector: {}
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: echo
+                                identifier: echo
+                                spec:
+                                    connectorRef: dbothwelldockerhub
+                                    image: alpine/latest
+                                    shell: Sh
+                                    command: echo "here we go!"
