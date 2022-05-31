@@ -3,4 +3,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'codebaseAlphaGitExp > my-feature-branch says Hello, Docker!'
+    return 'codebaseAlphaGitExp > 1.0.1 says Hello, Docker!'
